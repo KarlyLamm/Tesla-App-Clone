@@ -1,25 +1,23 @@
-import { StyleSheet } from "react-native";
+import React from "react";
+import { View, Text, Pressable } from "react-native";
+import styles from "./styles";
 
-const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: 50,
-    zIndex: 100,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "100%",
-    paddingHorizontal: 20,
-  },
-  logo: {
-    width: 100,
-    height: 20,
-    resizeMode: "contain",
-  },
-  menu: {
-    width: 25,
-    height: 25,
-    resizeMode: "contain",
-  },
-});
+const StyledButton = (props) => {
+  const { type, content, onPress } = props;
 
-export default styles;
+  const backgroundColor = type === "primary" ? "#171A20CC" : "#FFFFFFA6";
+  const textColor = type === "primary" ? "#FFFFFF" : "#171A20";
+
+  return (
+    <View style={styles.container}>
+      <Pressable
+        style={[styles.button, { backgroundColor: backgroundColor }]}
+        onPress={() => onPress()}
+      >
+        <Text style={[styles.text, { color: textColor }]}>{content}</Text>
+      </Pressable>
+    </View>
+  );
+};
+
+export default StyledButton;
